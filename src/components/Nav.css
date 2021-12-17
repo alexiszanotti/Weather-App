@@ -28,6 +28,13 @@
   border-radius: 10px;
 }
 
+.weather-container:hover {
+  scale: 1.1;
+}
+.weather-container:hover i {
+  scale: 1.1;
+}
+
 .weather-container i {
   font-size: 1.2em;
   margin: 0 0.7rem;

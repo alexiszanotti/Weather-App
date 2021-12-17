@@ -14,7 +14,6 @@ function App() {
   }
 
   function onSearch(ciudad) {
-    //Llamado a la API del clima
     fetch(
       `https://api.openweathermap.org/data/2.5/forecast?q=${ciudad}&appid=${apiKey}&units=metric`
     )
