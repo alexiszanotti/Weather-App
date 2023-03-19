@@ -1,8 +1,7 @@
-import React from "react";
-import "./Card.css";
 import { gsap } from "gsap";
+import "./card.css";
 
-export default function Card({
+export const Card = ({
   country,
   wind,
   temp,
@@ -10,11 +9,10 @@ export default function Card({
   img,
   pressure,
   onClose,
-  id,
   description,
   humidity,
   nextDays,
-}) {
+}) => {
   //get day of the week
   const day = new Date().getDay();
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -24,9 +22,9 @@ export default function Card({
   const tomorrow2 = days[(day + 3) % 7];
   const tomorrow3 = days[(day + 4) % 7];
 
-  function capitalize(word) {
-    return word[0].toUpperCase() + word.slice(1);
-  }
+  const capitalize = word => {
+    if (word && word.length) return word[0].toUpperCase() + word.slice(1);
+  };
 
   const detail = () => {
     const p = document.querySelector(".card-right");
@@ -59,7 +57,6 @@ export default function Card({
       }
     }
   };
-  console.log(nextDays);
   return (
     <div className='container'>
       <div className='card-left'>
@@ -105,43 +102,43 @@ export default function Card({
         </div>
 
         <div className='every-day'>
-          {nextDays.map(day => (
-            <div key={day.id} className='next-days'>
+          {nextDays?.map(({ id, day1, temp1, day2, temp2, day3, temp3, day4, temp4 }) => (
+            <div key={id} className='next-days'>
               <div className='card-day'>
                 <img
                   alt='Img not found'
                   className='img-days'
-                  src={`http://openweathermap.org/img/wn/${day.day1}@2x.png`}
+                  src={`http://openweathermap.org/img/wn/${day1}@2x.png`}
                 />
                 <h3 className='nexts-days-title'>{tomorrow.slice(0, 3)}</h3>
-                <h3>{Math.round(day.temp1)}°C</h3>
+                <h3>{Math.round(temp1)}°C</h3>
               </div>
               <div className='card-day'>
                 <img
                   alt='Img not found'
                   className='img-days'
-                  src={`http://openweathermap.org/img/wn/${day.day2}@2x.png`}
+                  src={`http://openweathermap.org/img/wn/${day2}@2x.png`}
                 />
                 <h3 className='nexts-days-title'>{tomorrow1.slice(0, 3)}</h3>
-                <h3>{Math.round(day.temp2)}°C</h3>
+                <h3>{Math.round(temp2)}°C</h3>
               </div>
               <div className='card-day'>
                 <img
                   alt='Img not found'
                   className='img-days'
-                  src={`http://openweathermap.org/img/wn/${day.day3}@2x.png`}
+                  src={`http://openweathermap.org/img/wn/${day3}@2x.png`}
                 />
                 <h3 className='nexts-days-title'>{tomorrow2.slice(0, 3)}</h3>
-                <h3>{Math.round(day.temp3)}°C</h3>
+                <h3>{Math.round(temp3)}°C</h3>
               </div>
               <div className='card-day'>
                 <img
                   alt='Img not found'
                   className='img-days'
-                  src={`http://openweathermap.org/img/wn/${day.day4}@2x.png`}
+                  src={`http://openweathermap.org/img/wn/${day4}@2x.png`}
                 />
                 <h3 className='nexts-days-title'>{tomorrow3.slice(0, 3)}</h3>
-                <h3>{Math.round(day.temp4)}°C</h3>
+                <h3>{Math.round(temp4)}°C</h3>
               </div>
             </div>
           ))}
@@ -149,4 +146,4 @@ export default function Card({
       </div>
     </div>
   );
-}
+};

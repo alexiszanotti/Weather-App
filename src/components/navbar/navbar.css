@@ -61,6 +61,10 @@ a:link {
   padding: 0.5rem;
 }
 
+.search-bar::placeholder {
+  color: #fff;
+}
+
 .search-bar:focus {
   outline: none;
   border: 0;
